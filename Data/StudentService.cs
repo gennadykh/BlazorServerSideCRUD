@@ -23,7 +23,6 @@ public class StudentService {
       public async Task<Student> InsertStudentAsync(Student student) {
         _context.Students.Add(student);
         await _context.SaveChangesAsync();
-
         return student;
       }
 
