@@ -33,7 +33,12 @@ namespace BlazorServerSideCRUD
             // gok
             services.AddDbContext<SchoolDbContext>(
                 option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            // add scoped service so that we can use dependency injection. Scoped lifetime services are created once per client request (connection).
             services.AddScoped<StudentService>();
+
+            services.AddDbContext<SurveyDbContext>(
+                option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<SurveyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

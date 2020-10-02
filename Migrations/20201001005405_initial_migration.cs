@@ -25,10 +25,10 @@ namespace BlazorServerSideCRUD.Migrations
                 columns: new[] { "StudentId", "FirstName", "LastName", "School" },
                 values: new object[,]
                 {
-                    { "4fa9fcf2-777d-4692-993d-5d2ff6ccb4d6", "Jane", "Smith", "Medicine" },
-                    { "85c0d3a2-0718-4940-8e84-f85cdc29be8f", "John", "Fisher", "Engineering" },
-                    { "3c397645-75d8-488a-ac6b-3b06bc1ee3e9", "Pamela", "Baker", "Food Science" },
-                    { "52bbcd5d-105c-4926-bdf0-f929d54ee2e5", "Peter", "Taylor", "Mining" }
+                    { "25c05917-cb3b-47ab-8af0-54489cf3f52a", "Jane", "Smith", "Medicine" },
+                    { "4f05f61f-15ea-4ef9-aa17-b61878b9a554", "John", "Fisher", "Engineering" },
+                    { "f1c2b660-302b-46dc-a261-a1d23404aaa1", "Pamela", "Baker", "Food Science" },
+                    { "a24cdad6-617b-477c-8d97-3fc218c76718", "Peter", "Taylor", "Mining" }
                 });
         }
 
