@@ -1,4 +1,4 @@
-namespace SimpleSurvey
+namespace BlazorServerSideCRUD.Models.Survey
 {
     using System;
     using System.Collections.Generic;

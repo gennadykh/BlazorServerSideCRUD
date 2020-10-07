@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimpleSurvey;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorServerSideCRUD.Data.Context;
+using BlazorServerSideCRUD.Models.Survey;
 
-namespace BlazorServerSideCRUD.Data
+namespace BlazorServerSideCRUD.Data.Service
 {
     public class SurveyService
     {
@@ -21,12 +21,12 @@ namespace BlazorServerSideCRUD.Data
             return await _context.Questions.ToListAsync();
         }
 
-        public async Task<Question> GetStudentByIdAsync(int id)
+        public async Task<Question> GetQuestionByIdAsync(int id)
         {
             return await _context.Questions.FindAsync(id);
         }
 
-        public async Task<Question> InsertStudentAsync(Question question)
+        public async Task<Question> InsertQuestionAsync(Question question)
         {
             _context.Questions.Add(question);
             await _context.SaveChangesAsync();
@@ -34,7 +34,7 @@ namespace BlazorServerSideCRUD.Data
             return question;
         }
 
-        public async Task<Question> UpdateStudentAsync(string id, Question s)
+        public async Task<Question> UpdateQuestionAsync(string id, Question s)
         {
             var question = await _context.Questions.FindAsync(id);
 
@@ -51,7 +51,7 @@ namespace BlazorServerSideCRUD.Data
             return question;
         }
 
-        public async Task<Question> DeleteStudentAsync(string id)
+        public async Task<Question> DeleteQuestionAsync(string id)
         {
             var student = await _context.Questions.FindAsync(id);
 
@@ -71,15 +71,9 @@ namespace BlazorServerSideCRUD.Data
         #endregion Question
 
         #region Surveys 
-        public async Task<List<Survey>> GetSurveysAsync()
-        {
-            return await _context.Surveys.ToListAsync();
-        }
+        public async Task<List<Survey>> GetSurveysAsync() => await _context.Surveys.ToListAsync();
 
-        public async Task<Survey> GetSurveyByIdAsync(int id)
-        {
-            return await _context.Surveys.FindAsync(id);
-        }
+        public async Task<Survey> GetSurveyByIdAsync(int id) => await _context.Surveys.FindAsync(id);
 
         public async Task<Survey> InsertSurveyAsync(Survey survey)
         {

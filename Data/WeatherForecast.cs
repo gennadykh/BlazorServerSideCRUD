@@ -1,6 +1,6 @@
 using System;
 
-namespace BlazorServerSideCRUD.Data
+namespace BlazorServerSideCRUD.Data.Context
 {
     public class WeatherForecast
     {

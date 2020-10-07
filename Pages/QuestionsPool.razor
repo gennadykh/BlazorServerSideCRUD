@@ -1,0 +1,135 @@
+﻿@page "/QuestionsPool"
+@using System.Collections.Generic;
+@using Telerik.Blazor.Services;
+@using BlazorServerSideCRUD.Data.Service
+@using BlazorServerSideCRUD.Models.Survey
+
+@inject SurveyService surveyService
+@inject ITelerikStringLocalizer Localizer
+
+<h3>Questions Pool</h3>
+
+
+@if (GridData == null) {
+  <p><em>Loading...</em></p>
+} else {
+
+@if (mode == MODE.Add) // Add question form 
+{
+    <input placeholder=@nameof(Question.Text) @bind="@thisQuestion.Text" /><br />
+    <TelerikDropDownList Data="@questionTypes" TextField="SimpleSurvey.Question.QuestionType" ValueField="SimpleSurvey.Question.QuestionType" @bind-Value=@selectedQuestionType /> <br /@>
+    <input placeholder=@nameof(Question.Options) @bind="@thisQuestion.Options" /><br />
+    <button @onclick="@Insert" class="btn btn-warning">Insert</button>
+    <button @onclick="@CloseUI" class="btn btn-warning">Close</button>
+}
+
+<TelerikGrid Data=@GridData EditMode="@GridEditMode.Incell"
+             Height="500px"
+             Pageable="true" PageSize=@PageSize
+             OnUpdate=@UpdateItem OnDelete=@DeleteItem OnCreate=@CreateItem>
+    <GridToolBar>
+        <GridCommandButton OnClick="AddQuestion" Icon="add">Add Question</GridCommandButton>
+    </GridToolBar>
+    <GridColumns>
+        @*<GridColumn Field=@nameof(SimpleSurvey.Question.ID) Editable="false" />*@
+        <GridColumn Field=@nameof(Question.Text) Title="Text" />
+        <GridColumn Field=@nameof(Question.QuestionType) Title="Question Type" />
+
+        <GridColumn Field=@nameof(Question.Options) Title="Options (values as comma separated)" />
+        <GridCommandColumn>
+@*            <GridCommandButton Command="Delete" Icon="delete">@Localizer[nameof(Messages.Grid_Delete)]</GridCommandButton>
+            <GridCommandButton Command="Save" Icon="save" ShowInEdit="true">@Localizer[nameof(Messages.Grid_Update)]</GridCommandButton>
+*@            <GridCommandButton Command="Delete" Icon="delete">Delete</GridCommandButton>
+            <GridCommandButton Command="Save" Icon="save" ShowInEdit="true">Update</GridCommandButton>
+        </GridCommandColumn>
+    </GridColumns>
+</TelerikGrid>
+
+@*<table class='table table-hover'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Text</th>
+        <th>Question Type</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var item in questions)
+      {
+        <tr>
+          <td>@item.ID</td>
+          <td>@item.Text</td>
+          <td>@item.QuestionType</td>
+          <td>@item.Options</td>
+        </tr>
+        }
+    </tbody>
+  </table>
+*@}
+
+
+@functions {
+    protected async Task Insert() {
+        Question s = new Question() {
+            Text = thisQuestion.Text,
+            Options = thisQuestion.Options,
+            QuestionType = thisQuestion.QuestionType
+        };
+
+        await surveyService.InsertQuestionAsync(s);        
+        await load();
+        mode = MODE.None;
+    }
+    protected void AddQuestion() { 
+@*        ClearFields();*@
+        mode = MODE.Add;
+    }
+    protected void CloseUI(){
+        mode = MODE.None;
+    }
+
+
+    private enum MODE { None, Add, EditDelete };
+    MODE mode = MODE.None;
+        
+    List<string> questionTypes = Enum.GetNames(typeof(QuestionTypes)).ToList();
+    string selectedQuestionType{get; set;}
+    int PageSize = 15;
+    List<Question> GridData;
+    Question thisQuestion{get; set;} = new Question();
+
+//? gok protected override async Task OnInitAsync() {
+    protected override async Task OnInitializedAsync() {
+    await load();
+  }
+
+  protected async Task load() {
+    GridData = await surveyService.GetQuestionsAsync();
+  }
+  private void CreateItem(GridCommandEventArgs args)
+  {
+        var argsItem = args.Item as Question;
+
+        argsItem.ID = GridData.Count + 1;
+
+        GridData.Insert(0, argsItem);
+  }
+
+  private void DeleteItem(GridCommandEventArgs args)
+  {
+        var argsItem = args.Item as Question;
+
+        GridData.Remove(argsItem);
+  }
+
+  private void UpdateItem(GridCommandEventArgs args)
+  {
+        var argsItem = args.Item as Question;
+        var index = GridData.FindIndex(i => i.ID == argsItem.ID);
+        if (index != -1)
+        {
+            GridData[index] = argsItem;
+        }
+  }
+}

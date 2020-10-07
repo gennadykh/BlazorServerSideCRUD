@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BlazorServerSideCRUD.Models;
 using Microsoft.EntityFrameworkCore;
+using BlazorServerSideCRUD.Models.Student;
+using BlazorServerSideCRUD.Data.Context;
 
-namespace BlazorServerSideCRUD.Data
+namespace BlazorServerSideCRUD.Data.Service
 {
 public class StudentService {
       SchoolDbContext _context;

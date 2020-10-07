@@ -1,0 +1,13 @@
+﻿David (10/2/2020, 2:28:22 PM): Hello, my name is David! How can I help you today? 
+Я (10/2/2020, 2:29:01 PM): Hi, David. i have Telerik Premium Collection. Is Telerik for Blazor included in this pack? 
+David (10/2/2020, 2:29:45 PM): premium collection? 
+Я (10/2/2020, 2:30:12 PM): yes, its how it is spelled in our company licenses hub 
+David (10/2/2020, 2:31:07 PM): Gotcha,  I looked up your email and you have a DevCraft Complete license.  Yes, it does include Blazor 
+Я (10/2/2020, 2:32:01 PM): who is a major subscriber? 
+David (10/2/2020, 2:32:33 PM): what do you mean.  The license is list under your email 
+Я (10/2/2020, 2:33:07 PM): ok. how i can download Blazor version? 
+David (10/2/2020, 2:33:22 PM): you have to log into your telerik account.  We license per developer. 
+David (10/2/2020, 2:34:30 PM): You can call or email our Customer Advocacy team if you need help accessing your Account 
+David (10/2/2020, 2:34:50 PM): USA: +1 888 365 2779 
+David (10/2/2020, 2:34:59 PM): https://www.telerik.com/contact 
+Я (10/2/2020, 2:36:26 PM): got it! thanks! 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,8 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BlazorServerSideCRUD.Data;
 using Microsoft.EntityFrameworkCore;
+using BlazorServerSideCRUD.Data.Service;
+using BlazorServerSideCRUD.Data.Context;
 
 namespace BlazorServerSideCRUD
 {
@@ -29,6 +30,7 @@ namespace BlazorServerSideCRUD
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddTelerikBlazor();
             services.AddSingleton<WeatherForecastService>();
             // gok
             services.AddDbContext<SchoolDbContext>(

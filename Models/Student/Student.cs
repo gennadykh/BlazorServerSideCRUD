@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorServerSideCRUD.Models
+namespace BlazorServerSideCRUD.Models.Student
 {
     public class Student
     {

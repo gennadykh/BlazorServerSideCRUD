@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SimpleSurvey;
 using System.Data;
+using BlazorServerSideCRUD.Models.Survey;
 
-namespace BlazorServerSideCRUD.Data
+namespace BlazorServerSideCRUD.Data.Context
 {
     public class SurveyDbContext : DbContext
     {
@@ -28,14 +28,14 @@ namespace BlazorServerSideCRUD.Data
                 {
                     ID = 1,
                     Text = "CADWorx Plant: Rank the following items with the highest priority for you and your market first.",
-                    QuestionType = SimpleSurvey.QuestionTypes.MultiLineTextBox.ToString(),
+                    QuestionType = QuestionTypes.MultiLineTextBox.ToString(),
                     Options = "TX:15521 Import CAESAR,TX:4877 Support Jacketed Piping,TX:9146-Main Thickness Table"
                 },
                 new
                 {
                     ID = 2,
                     Text = "CADWorx Structure: Rank the following items with the highest priority for you and your market first.",
-                    QuestionType = SimpleSurvey.QuestionTypes.MultiLineTextBox.ToString(),
+                    QuestionType = QuestionTypes.MultiLineTextBox.ToString(),
                     Options = "TX:20983-Support Circular,TX:5002-Steel BOM TOTAL"
                 }
             );
